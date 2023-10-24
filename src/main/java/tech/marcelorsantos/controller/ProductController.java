@@ -31,4 +31,12 @@ public class ProductController {
         Product product = service.saveProduct(dto);
         return Response.ok(product).status(201).build();
     }
+
+    @Path("{id}")
+    @PUT
+    public Response updateProduct(@PathParam("id") Long id, ProductDTO dto){
+        service.updateProduct(id, dto);
+        return Response.status(204).build();
+    }
+
 }
