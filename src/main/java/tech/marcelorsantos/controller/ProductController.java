@@ -39,4 +39,11 @@ public class ProductController {
         return Response.status(204).build();
     }
 
+    @Path("{id}")
+    @DELETE
+    public Response removeProduct(@PathParam("id") Long id){
+        service.removeProduct(id);
+        return Response.status(204).build();
+    }
+
 }

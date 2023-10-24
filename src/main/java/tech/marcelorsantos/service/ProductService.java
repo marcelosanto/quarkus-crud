@@ -44,4 +44,17 @@ public class ProductService {
 
         product.persist();
     }
+
+    @Transactional
+    public void removeProduct(Long id){
+        Optional<Product> productOpt = Product.findByIdOptional(id);
+
+        if (productOpt.isEmpty()) {
+            throw  new NullPointerException("Product not found");
+        }
+
+        Product product = productOpt.get();
+
+        product.delete();
+    }
 }
