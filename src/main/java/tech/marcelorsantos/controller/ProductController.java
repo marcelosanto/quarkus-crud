@@ -2,12 +2,11 @@ package tech.marcelorsantos.controller;
 
 
 import jakarta.inject.Inject;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.transaction.Transactional;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import tech.marcelorsantos.dto.ProductDTO;
 import tech.marcelorsantos.entity.Product;
 import tech.marcelorsantos.service.ProductService;
 
@@ -25,5 +24,11 @@ public class ProductController {
     public Response listProducts(){
         List<Product> products = service.productList();
         return Response.ok(products).build();
+    }
+
+    @POST
+    public Response saveProduct(ProductDTO dto){
+        Product product = service.saveProduct(dto);
+        return Response.ok(product).status(201).build();
     }
 }
